@@ -2,7 +2,15 @@ plugins {
     id 'java-library'
 }
 
+ext {
+	springBootVersion = '2.0.5.RELEASE'
+}
+
 dependencies {
+	compile(
+		// SpringBoot
+		[group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.5.RELEASE']
+	)
 }
 
 repositories {
