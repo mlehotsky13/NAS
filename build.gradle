@@ -6,6 +6,7 @@ ext {
 	springBootVersion = '2.0.5.RELEASE'
 	webJarsVersion = '4.1.3'
 	lombokVersion = '1.16.18'
+	jacksonVersion = '2.9.7'
 }
 
 dependencies {
@@ -22,7 +23,11 @@ dependencies {
 		[group: 'org.webjars', name: 'bootstrap', version: webJarsVersion],
 		
 		// Lombok
-		[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
+		[group: 'org.projectlombok', name: 'lombok', version: lombokVersion],
+		
+		// Jackson
+        [group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion],
+        [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion]
 	)
 }
 

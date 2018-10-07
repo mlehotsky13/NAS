@@ -3,7 +3,7 @@ package sk.stuba.fiit.model;
 import lombok.Data;
 
 @Data
-public class User {
+public class NASUser {
     private String username;
     private String password;
     private String roles[];
