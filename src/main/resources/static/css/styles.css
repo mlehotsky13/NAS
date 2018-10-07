@@ -1,3 +1,11 @@
+p.invalid {
+	color: red;
+}
+
+p.logout {
+	color: blue;
+}
+
 h1 {
 	color: green;
 	text-align: center;
