@@ -16,10 +16,10 @@ public class NASUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<NASUser> user = userFileSystemService.getUserByName(username);
-        return user.map(v -> User.withDefaultPasswordEncoder()//
-                .username(v.getUsername())//
-                .password(v.getPassword())//
-                .roles(v.getRoles())//
+        return user.map(u -> User//
+                .withUsername(u.getUsername())//
+                .password(u.getPassword())//
+                .roles(u.getRoles())//
                 .build())//
                 .orElseThrow(() -> new UsernameNotFoundException("Could not find user " + username + "."));
     }
