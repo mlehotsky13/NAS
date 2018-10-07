@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class StorageController {
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String index() {
-		return "index";
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public String index() {
+        return "index";
+    }
 }
