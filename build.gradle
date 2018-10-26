@@ -14,6 +14,7 @@ ext {
 	springBootVersion = '2.0.5.RELEASE'
 	bootstrapVersion = '4.1.3'
 	fontAwesomeVersion = '5.4.1'
+	jQueryVersion = '3.3.1-1'
 	lombokVersion = '1.16.18'
 	jacksonVersion = '2.9.7'
 }
@@ -31,6 +32,7 @@ dependencies {
 		// Web jars
 		[group: 'org.webjars', name: 'bootstrap', version: bootstrapVersion],
         [group: 'org.webjars', name: 'font-awesome', version: fontAwesomeVersion],
+        [group: 'org.webjars', name: 'jquery', version: jQueryVersion],
 		
 		// Lombok
 		[group: 'org.projectlombok', name: 'lombok', version: lombokVersion],

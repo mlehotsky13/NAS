@@ -23,12 +23,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()//
                 .antMatchers("/webjars/**").permitAll()//
                 .antMatchers("/css/**").permitAll()//
+                .antMatchers("/js/**").permitAll()//
                 .anyRequest().authenticated()//
                 .and()//
                 .formLogin()//
                 .loginPage("/login")//
                 .permitAll()//
                 .and()//
+                .csrf().disable()//
                 .logout()//
                 .permitAll();//
     }
