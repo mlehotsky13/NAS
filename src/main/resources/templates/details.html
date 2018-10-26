@@ -23,7 +23,7 @@
 				<div class="content-box-large">
 					<div class="panel-heading">
 						<div class="panel-title">
-							<h4>Storages</h4>
+							<h4 th:text="${path}" />
 						</div>
 					</div>
 					<div class="panel-body">
@@ -38,10 +38,14 @@
 							</thead>
 							<tbody>
 								<th:block th:each="record, i: ${records}">
-									<tr class="clickable-row">
+									<!-- <tr class="clickable-row">
 										<td><i class="fas fa-folder"></i><span class="deviceName"
 											th:text="${storage.deviceName}" /></td>
-										<td th:text="${storage.rootDirectory}"></td>
+										<td th:text="${storage.rootDirectory}"></td> -->
+									<td>asdasda</td>
+									<td>asdasda</td>
+									<td>asdasda</td>
+									<td>asdasda</td>
 									</tr>
 								</th:block>
 							</tbody>

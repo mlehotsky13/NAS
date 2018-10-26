@@ -24,9 +24,9 @@ public class StorageController {
     }
 
     @PostMapping("/details")
-    public String getDetailsPage(@RequestParam("rootPath") String rootPath) {
+    public String getDetailsPage(@RequestParam("path") String path, Model model) {
 
-        System.out.println();
+        model.addAttribute("path", path.replaceAll("/media/miroslav/", ""));
 
         return "details";
     }
