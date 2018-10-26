@@ -22,9 +22,31 @@
 			<div class="col-md-10">
 				<div class="content-box-large">
 					<div class="panel-heading">
-						<div class="panel-title"></div>
+						<div class="panel-title">
+							<h4>Storages</h4>
+						</div>
 					</div>
-					<div class="panel-body"></div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Name</th>
+									<th>Mount point</th>
+								</tr>
+							</thead>
+							<tbody>
+								<th:block th:each="storage, i: ${storages}">
+									<tr class="clickable-row">
+										<td th:text="${i.index + 1}"></td>
+										<td><i class="fas fa-folder"></i><span class="deviceName"
+											th:text="${storage.deviceName}" /></td>
+										<td th:text="${storage.rootDirectory}"></td>
+									</tr>
+								</th:block>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
