@@ -1,6 +1,14 @@
-plugins {
-    id 'java-library'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+    }
 }
+
+apply plugin: 'java-library'
+apply plugin: 'org.springframework.boot'
 
 ext {
 	springBootVersion = '2.0.5.RELEASE'
@@ -34,8 +42,17 @@ dependencies {
         // USB Storage detector
         [group: 'net.samuelcampos', name: 'usbdrivedetector', version: '2.0.4']
 	)
+	
+	annotationProcessor (
+		[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
+	)
 }
 
 repositories {
 	mavenCentral()
+}
+
+bootJar {
+    baseName = 'NAS'
+    version =  '0.1.0'
 }

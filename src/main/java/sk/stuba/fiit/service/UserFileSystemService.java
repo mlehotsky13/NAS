@@ -1,6 +1,5 @@
 package sk.stuba.fiit.service;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
@@ -40,7 +39,7 @@ public class UserFileSystemService {
     private ArrayNode loadUsersJson() {
         ArrayNode usersJson = om.createArrayNode();
 
-        try (InputStream is = new FileInputStream("src/main/resources/users.json")) {
+        try (InputStream is = getClass().getResourceAsStream("/users.json")) {
             usersJson = (ArrayNode) om.readTree(is);
         } catch (IOException e) {
             e.printStackTrace();
