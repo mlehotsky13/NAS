@@ -334,6 +334,10 @@ footer .copy{
    color:#555;
 }
 
+.sidebar .nav > li.active > a{
+  color:#555;
+}
+
 .sidebar .nav > li > ul > li > a:hover{
    background:#fff;
    color:#555;

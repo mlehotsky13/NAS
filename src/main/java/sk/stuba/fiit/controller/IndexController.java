@@ -3,13 +3,14 @@ package sk.stuba.fiit.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping("/status")
-public class StatusController {
+@RequestMapping("/")
+public class IndexController {
 
     @GetMapping
-    public String getStatus() {
-        return "running";
+    public ModelAndView redirectPage() {
+        return new ModelAndView("redirect:/storages");
     }
 }

@@ -4,7 +4,8 @@ plugins {
 
 ext {
 	springBootVersion = '2.0.5.RELEASE'
-	webJarsVersion = '4.1.3'
+	bootstrapVersion = '4.1.3'
+	fontAwesomeVersion = '5.4.1'
 	lombokVersion = '1.16.18'
 	jacksonVersion = '2.9.7'
 }
@@ -20,14 +21,18 @@ dependencies {
 		[group: 'org.springframework.boot', name: 'spring-boot-devtools', version: springBootVersion],
 		
 		// Web jars
-		[group: 'org.webjars', name: 'bootstrap', version: webJarsVersion],
+		[group: 'org.webjars', name: 'bootstrap', version: bootstrapVersion],
+        [group: 'org.webjars', name: 'font-awesome', version: fontAwesomeVersion],
 		
 		// Lombok
 		[group: 'org.projectlombok', name: 'lombok', version: lombokVersion],
 		
 		// Jackson
         [group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion],
-        [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion]
+        [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion],
+        
+        // USB Storage detector
+        [group: 'net.samuelcampos', name: 'usbdrivedetector', version: '2.0.4']
 	)
 }
 
