@@ -706,3 +706,11 @@ tr.clickable-row:hover {
 	cursor: pointer;
 	background-color: #ccc;
 }
+
+.btn {
+	margin-bottom: 5px;
+}
+
+.options {
+	text-align: right;
+}
