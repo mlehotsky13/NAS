@@ -714,3 +714,15 @@ tr.clickable-row:hover {
 .options {
 	text-align: right;
 }
+
+div.modal-content {
+	max-width: 300px;
+}
+
+div.modal-body {
+	text-align: center;
+}
+
+div.modal-content {
+	margin: 0 auto;
+}

@@ -23,12 +23,16 @@
 				<div class="content-box-large">
 					<div class="panel-heading">
 						<div class="panel-title">
-							<h4 th:text="${path.subpath(2, path.getNameCount())}" />
+							<h4 th:text="${path}" />
+						</div>
+						<div class="panel-options">
+							<a href="#" class="refresh-details"><i class="fas fa-sync-alt"></i></a>
 						</div>
 					</div>
 					<div class="panel-body">
 						<div class="options">
-							<button type="button" class="btn btn-success btn-sm">Create
+							<button type="button" class="btn btn-success btn-sm"
+								data-toggle="modal" data-target="#createDirModal">Create
 								directory</button>
 							<button type="button" class="btn btn-primary btn-sm">Upload
 								file</button>
@@ -66,6 +70,7 @@
 		</div>
 	</div>
 	<!-- <footer lang="en" th:replace="fragments/footer :: footer"></footer> -->
+	<div lang="en" th:replace="fragments/modals :: modal-create-directory"></div>
 </body>
 
 </html>

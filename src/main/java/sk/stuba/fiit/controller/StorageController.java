@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sk.stuba.fiit.model.FileRecord;
 import sk.stuba.fiit.service.USBStorageService;
@@ -31,14 +32,14 @@ public class StorageController {
         return "storages";
     }
 
-    @PostMapping("/details")
+    @GetMapping("/details")
     public String getDetailsPage(@RequestParam("path") String path, Model model) throws IOException {
         Path p = Paths.get(path).normalize();
-        
+
         if (p.getNameCount() <= 2) {
             return "redirect:/storages";
         }
-            
+
         Set<FileRecord> records = Files.walk(p, 1)//
                 .filter(v -> !v.equals(p))//
                 .map(FileRecord::new)//
@@ -48,5 +49,20 @@ public class StorageController {
         model.addAttribute("records", records);
 
         return "details";
+    }
+
+    @PostMapping("/createDir")
+    public String createDir(//
+            @RequestParam("path") String path, //
+            @RequestParam("dirname") String dirname, //
+            RedirectAttributes redirectAttributes, //
+            Model model) throws IOException {
+
+        Path p = Paths.get(path, dirname);
+        Files.createDirectory(p);
+        
+        redirectAttributes.addAttribute("path", path);
+
+        return "redirect:/storages/details";
     }
 }
