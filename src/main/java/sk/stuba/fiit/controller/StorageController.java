@@ -33,13 +33,18 @@ public class StorageController {
 
     @PostMapping("/details")
     public String getDetailsPage(@RequestParam("path") String path, Model model) throws IOException {
-        Path p = Paths.get(path);
+        Path p = Paths.get(path).normalize();
+        
+        if (p.getNameCount() <= 2) {
+            return "redirect:/storages";
+        }
+            
         Set<FileRecord> records = Files.walk(p, 1)//
                 .filter(v -> !v.equals(p))//
                 .map(FileRecord::new)//
                 .collect(Collectors.toSet());
 
-        model.addAttribute("path", p.subpath(2, p.getNameCount()));
+        model.addAttribute("path", p);
         model.addAttribute("records", records);
 
         return "details";

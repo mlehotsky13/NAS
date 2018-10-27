@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $(".clickable-row").click(function () {
     $(".content-box-large").load("/storages/details .content-box-large >*", {
-      "path": $(this).find('td').eq(2).text()
+      "path": $(this).attr('path')
     }, function () {
       $.getScript("/js/scripts.js");
     });

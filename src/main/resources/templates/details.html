@@ -23,7 +23,7 @@
 				<div class="content-box-large">
 					<div class="panel-heading">
 						<div class="panel-title">
-							<h4 th:text="${path}" />
+							<h4 th:text="${path.subpath(2, path.getNameCount())}" />
 						</div>
 					</div>
 					<div class="panel-body">
@@ -43,18 +43,17 @@
 								</tr>
 							</thead>
 							<tbody>
+								<tr class="clickable-row" th:path="${path} + '/..'">
+									<td colspan="4">../</td>
+								</tr>
 								<th:block th:each="record, i: ${records}">
-									<tr class="clickable-row">
-										<!-- <td><i class="fas fa-folder"></i><span class="deviceName"
-											th:text="${storage.deviceName}" /></td>
-										<td th:text="${storage.rootDirectory}"></td> -->
-
+									<tr class="clickable-row"
+										th:path="${path} + '/' + ${record.name}">
 										<td th:switch="${record.type}"><i th:case="'Folder'"
 											class="fas fa-folder"></i> <i th:case="'File'"
 											class="fas fa-file"></i> <span class="deviceName"
 											th:text="${record.name}"></span></td>
 										<td th:text="${record.type}" />
-										<td th:text="${record.path}" hidden />
 										<td th:text="${record.owner}" />
 										<td th:text="${record.lastModified}" />
 									</tr>
