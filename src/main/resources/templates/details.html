@@ -49,10 +49,9 @@
 											th:text="${storage.deviceName}" /></td>
 										<td th:text="${storage.rootDirectory}"></td> -->
 
-										<td th:switch="${record.type}">
-										<i th:case="'Folder'" class="fas fa-folder"></i>
-										<i th:case="'File'"class="fas fa-file"></i>
-										<span class="deviceName"
+										<td th:switch="${record.type}"><i th:case="'Folder'"
+											class="fas fa-folder"></i> <i th:case="'File'"
+											class="fas fa-file"></i> <span class="deviceName"
 											th:text="${record.name}"></span></td>
 										<td th:text="${record.type}" />
 										<td th:text="${record.path}" hidden />
@@ -68,8 +67,6 @@
 		</div>
 	</div>
 	<!-- <footer lang="en" th:replace="fragments/footer :: footer"></footer> -->
-	<!-- scripts -->
-	<script th:src="@{/js/scripts.js}"></script>
 </body>
 
 </html>
