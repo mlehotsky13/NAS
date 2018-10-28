@@ -1,19 +1,15 @@
 package sk.stuba.fiit.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileSystemUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,20 +35,17 @@ public class StorageController {
     }
 
     @GetMapping("/details")
-    public String getDetailsPage(@RequestParam("path") String path, Model model) throws IOException {
+    public String getDetailsPage(@RequestParam("path") String path, Model model) {
         Path p = Paths.get(path).normalize();
 
         if (p.getNameCount() <= 2) {
             return "redirect:/storages";
         }
 
-        Set<FileRecord> records = Files.walk(p, 1)//
-                .filter(v -> !v.equals(p))//
-                .map(FileRecord::new)//
-                .collect(Collectors.toSet());
+        Set<FileRecord> fileRecords = storageService.getRecordsInDirectory(p);
 
         model.addAttribute("path", p);
-        model.addAttribute("records", records);
+        model.addAttribute("records", fileRecords);
 
         return "details";
     }
@@ -62,10 +55,9 @@ public class StorageController {
             @RequestParam("path") String path, //
             @RequestParam("dirname") String dirname, //
             RedirectAttributes redirectAttributes, //
-            Model model) throws IOException {
+            Model model) {
 
-        Path p = Paths.get(path, dirname);
-        Files.createDirectory(p);
+        storageService.createDirectory(path, dirname);
 
         redirectAttributes.addAttribute("path", path);
 
@@ -74,23 +66,13 @@ public class StorageController {
 
     @PostMapping("/upload/**")
     public String uploadFile(//
-            HttpServletRequest request,//
+            HttpServletRequest request, //
             @RequestParam("file") MultipartFile file, //
             RedirectAttributes redirectAttributes) {
-        
-        Path p = Paths.get(request.getRequestURL().toString());
-        Path path = Paths.get(p.toString().substring(p.toString().indexOf("/upload") + 7, p.toString().length()));
-        String fileName = file.getOriginalFilename();
-        
-        try {
-            path = Files.createFile(path.resolve(fileName));
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path.toString()));
-            bos.write(file.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        redirectAttributes.addAttribute("path", path.getParent().toString());
+        Path p = storageService.uploadFile(request.getRequestURL().toString(), file);
+
+        redirectAttributes.addAttribute("path", p.getParent().toString());
 
         return "redirect:/storages/details";
     }
@@ -98,10 +80,9 @@ public class StorageController {
     @PostMapping("/deleteRecord")
     public String deleteRecord(//
             @RequestParam("path") String path, //
-            RedirectAttributes redirectAttributes) throws IOException {
+            RedirectAttributes redirectAttributes) {
 
-        Path p = Paths.get(path);
-        FileSystemUtils.deleteRecursively(p);
+        Path p = storageService.deleteRecord(path);
 
         redirectAttributes.addAttribute("path", p.getParent().toString());
 
@@ -112,10 +93,9 @@ public class StorageController {
     public String editRecord(//
             @RequestParam("path") String path, //
             @RequestParam("newname") String newname, //
-            RedirectAttributes redirectAttributes) throws IOException {
+            RedirectAttributes redirectAttributes) {
 
-        Path p = Paths.get(path);
-        Files.move(p, p.resolveSibling(newname));
+        Path p = storageService.editRecord(path, newname);
 
         redirectAttributes.addAttribute("path", p.getParent().toString());
 
