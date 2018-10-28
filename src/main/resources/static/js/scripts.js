@@ -14,8 +14,18 @@ $(document).ready(function () {
   $("#createDirBtn").click(function () {
     $.post("/storages/createDir", { "path": $("h4").text(), "dirname": $("input[name=dirname]").val() }, function () {
       $("#createDirModal").modal('hide');
+      window.location.reload();
     });
-    window.location.reload();
+  });
+});
+
+$(document).ready(function () {
+  $("#uploadBtn").click(function () {
+	  alert("Uploading...");
+    // $.post("/storages/upload", { "path": $("h4").text(), "dirname": $("input[name=dirname]").val() }, function () {
+    //   $("#createDirModal").modal('hide');
+    // });
+    // window.location.reload();
   });
 });
 
