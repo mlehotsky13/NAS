@@ -68,12 +68,26 @@ public class StorageController {
     }
 
     @PostMapping("/deleteRecord")
-    public String deleteDir(//
+    public String deleteRecord(//
             @RequestParam("path") String path, //
             RedirectAttributes redirectAttributes) throws IOException {
 
         Path p = Paths.get(path);
         FileSystemUtils.deleteRecursively(p);
+
+        redirectAttributes.addAttribute("path", p.getParent().toString());
+
+        return "redirect:/storages/details";
+    }
+
+    @PostMapping("/editRecord")
+    public String editRecord(//
+            @RequestParam("path") String path, //
+            @RequestParam("newname") String newname, //
+            RedirectAttributes redirectAttributes) throws IOException {
+        
+        Path p = Paths.get(path);
+        Files.move(p, p.resolveSibling(newname));
 
         redirectAttributes.addAttribute("path", p.getParent().toString());
 

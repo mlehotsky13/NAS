@@ -32,6 +32,14 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+  $(document).on("click", ".editRecord", function () {
+    $("#editRecordModal").find("input[name=path]").val($(this).closest("tr").attr("path"));
+    $("#editRecordModal").find("input[name=newname]").val($(this).closest("tr").find("span").first().text());
+    $("#editRecordModal").modal('show');
+  });
+});
+
+$(document).ready(function () {
   $("a.refresh-storages").click(function () {
     $(".panel-body").load("/storages table");
     window.location.reload();

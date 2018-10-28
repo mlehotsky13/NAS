@@ -731,6 +731,10 @@ div.modal-content {
 	color: red;
 }
 
-i.deleteRecord:hover {
+.far.fa-edit:hover {
+	color: blue;
+}
+
+i.deleteRecord:hover, i.editRecord:hover, i.downloadRecord:hover {
 	cursor: pointer;
 }

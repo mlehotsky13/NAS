@@ -76,3 +76,29 @@
 		</form>
 	</div>
 </div>
+
+<!-- Edit Record Modal -->
+<div class="modal fade" id="editRecordModal"
+	th:fragment="modal-edit-record" xmlns:th="http://www.thymeleaf.org">
+	<div class="modal-dialog" role="document">
+		<form method="POST" th:action="@{/storages/editRecord}">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edit</h5>
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<input type="text" name="path" hidden /> <input
+						class="form-control" type="text" name="newname" />
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm"
+						data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary btn-sm">Edit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

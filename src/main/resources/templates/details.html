@@ -37,8 +37,8 @@
 								<i class="fas fa-plus"></i><span class="deviceName">Create
 									directory</span>
 							</button>
-							<button id="uploadFileBtn" type="button" class="btn btn-primary btn-sm"
-								data-toggle="modal">
+							<button id="uploadFileBtn" type="button"
+								class="btn btn-primary btn-sm" data-toggle="modal">
 								<i class="fas fa-upload"></i><span class="deviceName">Upload
 									file</span>
 							</button>
@@ -67,10 +67,10 @@
 										<td th:text="${record.type}" />
 										<td th:text="${record.owner}" />
 										<td th:text="${record.lastModified}" />
-										<td><i class="downloadRecord fas fa-download fa-lg"></i>
-											<i class="renameRecord far fa-edit fa-lg"></i> <i
-											class="deleteRecord fas fa-trash-alt fa-lg"
-											data-toggle="modal"></i></td>
+										<td><i class="downloadRecord fas fa-download fa-lg"
+											title="Download"></i> <i class="editRecord far fa-edit fa-lg"
+											title="Edit"></i> <i
+											class="deleteRecord fas fa-trash-alt fa-lg" title="Delete"></i></td>
 									</tr>
 								</th:block>
 							</tbody>
@@ -84,6 +84,7 @@
 	<div lang="en" th:replace="fragments/modals :: modal-create-directory"></div>
 	<div lang="en" th:replace="fragments/modals :: modal-upload-file"></div>
 	<div lang="en" th:replace="fragments/modals :: modal-delete-record"></div>
+	<div lang="en" th:replace="fragments/modals :: modal-edit-record"></div>
 </body>
 
 </html>
