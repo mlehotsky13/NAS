@@ -43,8 +43,9 @@ $(document).ready(function () {
   $(document).on("click", ".downloadRecord", function () {
 	  var baseURL = window.location.origin;
 	  var fileRecordURL = baseURL + "/storages/fileRecord" + $(this).closest("tr").attr("path");
+	  var encoded = encodeURI(fileRecordURL);
 	  
-	  window.location.replace(fileRecordURL);
+	  window.location.replace(encoded);
   });
 });
 

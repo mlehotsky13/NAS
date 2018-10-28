@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriUtils;
 
 import sk.stuba.fiit.model.FileRecord;
 import sk.stuba.fiit.service.USBStorageService;
@@ -106,7 +107,7 @@ public class StorageController {
     @GetMapping("/fileRecord/**")
     public void getFileRecord(HttpServletRequest request, HttpServletResponse response, Model model)
             throws IOException {
-        Path p = Paths.get(request.getRequestURL().toString());
+        Path p = Paths.get(UriUtils.decode(request.getRequestURL().toString(), "utf-8"));
         Path path = Paths.get(p.toString().substring(p.toString().indexOf("/fileRecord") + 11, p.toString().length()));
 
         response.getOutputStream().write(Files.readAllBytes(path));
