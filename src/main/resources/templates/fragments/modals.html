@@ -20,8 +20,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary btn-sm"
 							data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary btn-sm"
-							id="createDirBtn">Create</button>
+						<button type="submit" class="btn btn-primary btn-sm">Create</button>
 					</div>
 				</div>
 			</div>
@@ -52,5 +51,28 @@
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
+
+<!-- Delete Record Modal -->
+<div class="modal fade" id="deleteRecordModal"
+	th:fragment="modal-delete-record" xmlns:th="http://www.thymeleaf.org">
+	<div class="modal-dialog" role="document">
+		<form method="POST" th:action="@{/storages/deleteRecord}">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Are you sure?</h5>
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<input type="text" name="path" hidden />
+					<button type="button" class="btn btn-secondary btn-sm"
+						data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary btn-sm">Delete</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

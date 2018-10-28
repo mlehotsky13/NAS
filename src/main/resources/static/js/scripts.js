@@ -12,38 +12,22 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $(document).on("click", "#createDirBtn", function () {
-	  $("#createDirModal").find("input[name=path]").val($("h4").text());
-	  $("#createDirModal").modal('show');
+    $("#createDirModal").find("input[name=path]").val($("h4").text());
+    $("#createDirModal").modal('show');
   });
 });
 
 $(document).ready(function () {
-  $("#uploadBtn").click(function () {
-    alert("Uploading...");
-    // $.post("/storages/upload", { "path": $("h4").text(), "dirname": $("input[name=dirname]").val() }, function () {
-    //   $("#createDirModal").modal('hide');
-    // });
-    // window.location.reload();
+  $(document).on("click", "#uploadFileBtn", function () {
+    // $("#uploadFileModal").find("input[name=path]").val($(this).closest("tr").attr("path"));
+    // $("#uploadFileModal").modal('show');
   });
 });
 
 $(document).ready(function () {
-  $(".deleteRecord").click(function () {
-    $.ajax({
-      url: '/storages/deleteDir?path=' + $(this).closest("tr").attr("path"),
-      type: 'DELETE',
-    });
-    window.location.reload();
-  });
-});
-
-$(document).ready(function () {
-  $(".renameRecord").click(function () {
-    $.ajax({
-      url: '/storages/rename?path=' + $(this).closest("tr").attr("path"),
-      type: 'DELETE',
-    });
-    window.location.reload();
+  $(document).on("click", ".deleteRecord", function () {
+    $("#deleteRecordModal").find("input[name=path]").val($(this).closest("tr").attr("path"));
+    $("#deleteRecordModal").modal('show');
   });
 });
 
