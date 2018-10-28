@@ -727,14 +727,22 @@ div.modal-content {
 	margin: 0 auto;
 }
 
-.fas.fa-trash-alt:hover {
-	color: red;
+.fas.fa-download:hover {
+	color: green;
 }
 
 .far.fa-edit:hover {
 	color: blue;
 }
 
-i.deleteRecord:hover, i.editRecord:hover, i.downloadRecord:hover {
+.fas.fa-trash-alt:hover {
+	color: red;
+}
+
+i.downloadRecord, i.editRecord, i.deleteRecord {
+	padding: 2px;
+}
+
+i.downloadRecord:hover, i.editRecord:hover, i.deleteRecord:hover {
 	cursor: pointer;
 }
