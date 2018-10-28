@@ -702,9 +702,9 @@ span.deviceName {
 	margin-left: 5px;
 }
 
-tr.clickable-row:hover {
+.clickable-row:hover {
 	cursor: pointer;
-	background-color: #ccc;
+	// background-color: #ccc;
 }
 
 .btn {
@@ -725,4 +725,12 @@ div.modal-body {
 
 div.modal-content {
 	margin: 0 auto;
+}
+
+.fas.fa-trash-alt:hover {
+	color: red;
+}
+
+i.deleteRecord:hover {
+	cursor: pointer;
 }

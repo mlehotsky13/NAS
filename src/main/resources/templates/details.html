@@ -26,7 +26,8 @@
 							<h4 th:text="${path}" />
 						</div>
 						<div class="panel-options">
-							<a href="#" class="refresh-details"><i class="fas fa-sync-alt"></i></a>
+							<a href="#" class="refresh-details"><i
+								class="fas fa-sync-alt"></i></a>
 						</div>
 					</div>
 					<div class="panel-body">
@@ -44,22 +45,23 @@
 									<th>Type</th>
 									<th>Owner</th>
 									<th>Last modified</th>
+									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="clickable-row" th:path="${path} + '/..'">
-									<td colspan="4">../</td>
+								<tr th:path="${path} + '/..'">
+									<td class="clickable-row" colspan="4">../</td>
 								</tr>
 								<th:block th:each="record, i: ${records}">
-									<tr class="clickable-row"
-										th:path="${path} + '/' + ${record.name}">
-										<td th:switch="${record.type}"><i th:case="'Folder'"
-											class="fas fa-folder"></i> <i th:case="'File'"
-											class="fas fa-file"></i> <span class="deviceName"
-											th:text="${record.name}"></span></td>
+									<tr th:path="${path} + '/' + ${record.name}">
+										<td class="clickable-row" th:switch="${record.type}"><i
+											th:case="'Folder'" class="fas fa-folder"></i> <i
+											th:case="'File'" class="fas fa-file"></i> <span
+											class="deviceName" th:text="${record.name}"></span></td>
 										<td th:text="${record.type}" />
 										<td th:text="${record.owner}" />
 										<td th:text="${record.lastModified}" />
+										<td><i class="deleteRecord fas fa-trash-alt fa-lg"></i></td>
 									</tr>
 								</th:block>
 							</tbody>

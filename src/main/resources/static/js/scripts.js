@@ -5,17 +5,27 @@ $(document).ready(function () {
     // }, function () {
     //   $.getScript("/js/scripts.js");
     // });
-	  
-	  window.location = '/storages/details?path=' + $(this).attr('path');
+
+    window.location = '/storages/details?path=' + $(this).closest("tr").attr('path');
   });
 });
 
 $(document).ready(function () {
   $("#createDirBtn").click(function () {
-	  $.post( "/storages/createDir", {"path": $("h4").text(), "dirname": $("input[name=dirname]").val()}, function() {
-		  $("#createDirModal").modal('hide');
-	  });
-	  window.location.reload();
+    $.post("/storages/createDir", { "path": $("h4").text(), "dirname": $("input[name=dirname]").val() }, function () {
+      $("#createDirModal").modal('hide');
+    });
+    window.location.reload();
+  });
+});
+
+$(document).ready(function () {
+  $(".deleteRecord").click(function () {
+    $.ajax({
+      url: '/storages/deleteDir?path=' + $(this).closest("tr").attr("path"),
+      type: 'DELETE',
+    });
+    window.location.reload();
   });
 });
 

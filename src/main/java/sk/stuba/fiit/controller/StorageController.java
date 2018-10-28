@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,8 +61,21 @@ public class StorageController {
 
         Path p = Paths.get(path, dirname);
         Files.createDirectory(p);
-        
+
         redirectAttributes.addAttribute("path", path);
+
+        return "redirect:/storages/details";
+    }
+
+    @DeleteMapping("/deleteDir")
+    public String deleteDir(//
+            @RequestParam("path") String path, //
+            RedirectAttributes redirectAttributes) throws IOException {
+
+        Path p = Paths.get(path);
+        Files.delete(p);
+
+        redirectAttributes.addAttribute("path", p.getParent().toString());
 
         return "redirect:/storages/details";
     }
