@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,7 +74,7 @@ public class StorageController {
             RedirectAttributes redirectAttributes) throws IOException {
 
         Path p = Paths.get(path);
-        Files.delete(p);
+        FileSystemUtils.deleteRecursively(p);
 
         redirectAttributes.addAttribute("path", p.getParent().toString());
 
