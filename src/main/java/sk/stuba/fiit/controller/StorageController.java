@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -102,8 +103,12 @@ public class StorageController {
         return "redirect:/storages/details";
     }
 
-    @GetMapping("/fileRecord")
-    public byte[] getFileRecord(@RequestParam("path") String path, Model model) throws IOException {
-        return Files.readAllBytes(Paths.get(path));
+    @GetMapping("/fileRecord/**")
+    public void getFileRecord(HttpServletRequest request, HttpServletResponse response, Model model)
+            throws IOException {
+        Path p = Paths.get(request.getRequestURL().toString());
+        Path path = Paths.get(p.toString().substring(p.toString().indexOf("/fileRecord") + 11, p.toString().length()));
+
+        response.getOutputStream().write(Files.readAllBytes(path));
     }
 }

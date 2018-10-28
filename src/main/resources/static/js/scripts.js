@@ -40,6 +40,15 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+  $(document).on("click", ".downloadRecord", function () {
+	  var baseURL = window.location.origin;
+	  var fileRecordURL = baseURL + "/storages/fileRecord" + $(this).closest("tr").attr("path");
+	  
+	  window.location.replace(fileRecordURL);
+  });
+});
+
+$(document).ready(function () {
   $("a.refresh-storages").click(function () {
     $(".panel-body").load("/storages table");
     window.location.reload();
