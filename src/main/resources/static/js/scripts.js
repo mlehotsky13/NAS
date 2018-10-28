@@ -19,8 +19,8 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $(document).on("click", "#uploadFileBtn", function () {
-    // $("#uploadFileModal").find("input[name=path]").val($(this).closest("tr").attr("path"));
-    // $("#uploadFileModal").modal('show');
+    $("#uploadFileModal").find("form").first().attr("action", "/storages/upload" + $("h4").text());
+    $("#uploadFileModal").modal('show');
   });
 });
 
