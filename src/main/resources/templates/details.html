@@ -32,8 +32,8 @@
 					</div>
 					<div class="panel-body">
 						<div class="options">
-							<button type="button" class="btn btn-success btn-sm"
-								data-toggle="modal" data-target="#createDirModal">
+							<button id="createDirBtn" type="button"
+								class="btn btn-success btn-sm" data-toggle="modal">
 								<i class="fas fa-plus"></i><span class="deviceName">Create
 									directory</span>
 							</button>
@@ -67,7 +67,9 @@
 										<td th:text="${record.type}" />
 										<td th:text="${record.owner}" />
 										<td th:text="${record.lastModified}" />
-										<td><i class="deleteRecord fas fa-trash-alt fa-lg"></i></td>
+										<td><i class="downloadRecord fas fa-download fa-lg"></i>
+											<i class="renameRecord far fa-edit fa-lg"></i> <i
+											class="deleteRecord fas fa-trash-alt fa-lg"></i></td>
 									</tr>
 								</th:block>
 							</tbody>

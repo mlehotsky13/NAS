@@ -80,4 +80,9 @@ public class StorageController {
 
         return "redirect:/storages/details";
     }
+
+    @GetMapping("/fileRecord")
+    public byte[] getFileRecord(@RequestParam("path") String path, Model model) throws IOException {
+        return Files.readAllBytes(Paths.get(path));
+    }
 }
