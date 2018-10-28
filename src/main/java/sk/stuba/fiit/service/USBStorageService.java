@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.util.FileSystemUtils;
@@ -24,14 +24,16 @@ public class USBStorageService {
         return AbstractStorageDeviceDetector.getInstance().getStorageDevicesDevices();
     }
 
-    public Set<FileRecord> getRecordsInDirectory(Path p) {
-        Set<FileRecord> fileRecords = new HashSet<>();
+    public List<FileRecord> getRecordsInDirectory(Path p) {
+        List<FileRecord> fileRecords = new ArrayList<>();
 
         try {
             fileRecords = Files.walk(p, 1)//
                     .filter(v -> !v.equals(p))//
                     .map(FileRecord::new)//
-                    .collect(Collectors.toSet());
+                    .sorted(Comparator.comparing((FileRecord v) -> v.getType()).reversed()
+                            .thenComparing((FileRecord v) -> v.getName().toLowerCase()))//
+                    .collect(Collectors.toCollection(ArrayList::new));
         } catch (IOException e) {
             e.printStackTrace();
         }

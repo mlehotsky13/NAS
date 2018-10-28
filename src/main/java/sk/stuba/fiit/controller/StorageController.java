@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +43,7 @@ public class StorageController {
             return "redirect:/storages";
         }
 
-        Set<FileRecord> fileRecords = storageService.getRecordsInDirectory(p);
+        List<FileRecord> fileRecords = storageService.getRecordsInDirectory(p);
 
         model.addAttribute("path", p);
         model.addAttribute("records", fileRecords);
