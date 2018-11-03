@@ -26,7 +26,8 @@
 							<h4>Storages</h4>
 						</div>
 						<div class="panel-options">
-							<a href="#" class="refresh-storages"><i class="fas fa-sync-alt"></i></a>
+							<a href="#" class="refresh-storages"><i
+								class="fas fa-sync-alt"></i></a>
 						</div>
 					</div>
 					<div class="panel-body">
@@ -36,16 +37,19 @@
 									<th>#</th>
 									<th>Name</th>
 									<th>Mount point</th>
+									<th>Eject</th>
 								</tr>
 							</thead>
 							<tbody>
 								<th:block th:each="storage, i: ${storages}">
 									<tr th:path="${storage.rootDirectory}">
 										<td th:text="${i.index + 1}"></td>
-										<td class="clickable-row" ><i class="fab fa-usb"></i><span class="deviceName"
-											th:text="${storage.deviceName}" /></td>
+										<td class="clickable-row"><i class="fab fa-usb"></i><span
+											class="deviceName" th:text="${storage.deviceName}" /></td>
 										<td th:text="${storage.rootDirectory}"></td>
-									</tr>
+										<td><a
+											th:href="${'/storages/eject?mountPoint=' + storage.rootDirectory}"><i
+												class="fas fa-eject"></i></a></td>
 								</th:block>
 							</tbody>
 						</table>

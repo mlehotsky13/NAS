@@ -112,4 +112,14 @@ public class StorageController {
 
         response.getOutputStream().write(Files.readAllBytes(path));
     }
+
+    @GetMapping("/eject")
+    public String ejectStorage(@RequestParam("mountPoint") String mountPoint) throws InterruptedException {
+
+        storageService.ejectStorage(mountPoint);
+        
+        Thread.currentThread().sleep(1_000);
+        
+        return "redirect:/storages";
+    }
 }

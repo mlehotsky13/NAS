@@ -93,4 +93,16 @@ public class USBStorageService {
 
         return p;
     }
+
+    public Path ejectStorage(String path) {
+        Path p = Paths.get(path);
+
+        try {
+            Runtime.getRuntime().exec("umount " + p.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return p;
+    }
 }
