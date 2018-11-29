@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,8 @@ import sk.stuba.fiit.service.USBStorageService;
 @RequestMapping("/storages")
 public class StorageController {
 
-    private USBStorageService storageService = new USBStorageService();
+    @Autowired
+    private USBStorageService storageService;
 
     @GetMapping
     public String getStoragesPage(Model model) {
@@ -70,11 +72,15 @@ public class StorageController {
     public String uploadFile(//
             HttpServletRequest request, //
             @RequestParam("file") MultipartFile file, //
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) throws IOException {
 
-        Path p = storageService.uploadFile(request.getRequestURL().toString(), file);
+        Path p = Paths.get(request.getRequestURL().toString());
+        Path path = Paths.get(p.toString().substring(p.toString().indexOf("/upload") + 7, p.toString().length()));
+        Path fullPath = path.resolve(Paths.get(file.getOriginalFilename()));
 
-        redirectAttributes.addAttribute("path", p.getParent().toString());
+        storageService.uploadFile(fullPath, file.getBytes());
+
+        redirectAttributes.addAttribute("path", fullPath.getParent().toString());
 
         return "redirect:/storages/details";
     }
@@ -117,9 +123,9 @@ public class StorageController {
     public String ejectStorage(@RequestParam("mountPoint") String mountPoint) throws InterruptedException {
 
         storageService.ejectStorage(mountPoint);
-        
+
         Thread.currentThread().sleep(1_000);
-        
+
         return "redirect:/storages";
     }
 }

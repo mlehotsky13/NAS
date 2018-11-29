@@ -58,7 +58,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $("a.refresh-details").click(function () {
-    $(".panel-body").load("/storages/details table", "path=?" + $("h4").text());
+    $(".panel-body").load("/storages/details table", "path=" + $("h4").text());
     window.location.reload();
   });
 });
