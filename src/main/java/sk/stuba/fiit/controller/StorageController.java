@@ -74,14 +74,15 @@ public class StorageController {
     @PostMapping("/upload/**")
     public String uploadFile(//
             @RequestParam("path") String path, //
-            @RequestParam("file") MultipartFile file, //
+            @RequestParam("files") MultipartFile[] files, //
             RedirectAttributes redirectAttributes) throws IOException {
 
-        Path fullPath = Paths.get(path).resolve(Paths.get(file.getOriginalFilename()));
+        for (MultipartFile file : files) {
+            Path fullPath = Paths.get(path).resolve(Paths.get(file.getOriginalFilename()));
+            storageService.uploadFile(fullPath, file.getInputStream());
+        }
 
-        storageService.uploadFile(fullPath, file.getInputStream());
-
-        redirectAttributes.addAttribute("path", fullPath.getParent().toString());
+        redirectAttributes.addAttribute("path", path.toString());
 
         return "redirect:/storages/details";
     }
@@ -112,8 +113,7 @@ public class StorageController {
     }
 
     @GetMapping("/fileRecord/**")
-    public void getFileRecord(HttpServletRequest request, HttpServletResponse response, Model model)
-            throws IOException {
+    public void getFileRecord(HttpServletRequest request, HttpServletResponse response, Model model) {
         Path p = Paths.get(UriUtils.decode(request.getRequestURL().toString(), "utf-8"));
         Path path = Paths.get(p.toString().substring(p.toString().indexOf("/fileRecord") + 11, p.toString().length()));
 
@@ -121,6 +121,12 @@ public class StorageController {
             IOUtils.copy(is, response.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                response.getOutputStream().close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
