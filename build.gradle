@@ -17,6 +17,7 @@ ext {
 	jQueryVersion = '3.3.1-1'
 	lombokVersion = '1.16.18'
 	jacksonVersion = '2.9.7'
+ 	fileUploadVersion = '1.3.3'
 }
 
 dependencies {
@@ -40,6 +41,9 @@ dependencies {
 		// Jackson
         [group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion],
         [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion],
+
+		// Apache Commons FileUpload
+        // [group: 'commons-fileupload', name: 'commons-fileupload', version: fileUploadVersion],
         
         // USB Storage detector
         [group: 'net.samuelcampos', name: 'usbdrivedetector', version: '2.0.4']

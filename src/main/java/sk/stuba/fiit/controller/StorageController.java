@@ -1,7 +1,9 @@
 package sk.stuba.fiit.controller;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,15 +73,13 @@ public class StorageController {
 
     @PostMapping("/upload/**")
     public String uploadFile(//
-            HttpServletRequest request, //
+            @RequestParam("path") String path, //
             @RequestParam("file") MultipartFile file, //
             RedirectAttributes redirectAttributes) throws IOException {
 
-        Path p = Paths.get(request.getRequestURL().toString());
-        Path path = Paths.get(p.toString().substring(p.toString().indexOf("/upload") + 7, p.toString().length()));
-        Path fullPath = path.resolve(Paths.get(file.getOriginalFilename()));
+        Path fullPath = Paths.get(path).resolve(Paths.get(file.getOriginalFilename()));
 
-        storageService.uploadFile(fullPath, file.getBytes());
+        storageService.uploadFile(fullPath, file.getInputStream());
 
         redirectAttributes.addAttribute("path", fullPath.getParent().toString());
 
@@ -116,7 +117,11 @@ public class StorageController {
         Path p = Paths.get(UriUtils.decode(request.getRequestURL().toString(), "utf-8"));
         Path path = Paths.get(p.toString().substring(p.toString().indexOf("/fileRecord") + 11, p.toString().length()));
 
-        response.getOutputStream().write(Files.readAllBytes(path));
+        try (InputStream is = new BufferedInputStream(new FileInputStream(path.toFile()))) {
+            IOUtils.copy(is, response.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @GetMapping("/eject")

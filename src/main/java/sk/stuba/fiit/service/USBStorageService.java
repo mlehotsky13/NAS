@@ -3,6 +3,8 @@ package sk.stuba.fiit.service;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,13 +13,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import net.samuelcampos.usbdrivedetector.USBStorageDevice;
 import net.samuelcampos.usbdrivedetector.detectors.AbstractStorageDeviceDetector;
 import sk.stuba.fiit.model.FileRecord;
 
+@Service
 public class USBStorageService {
 
     public List<USBStorageDevice> getAllUSBStorageDevices() {
@@ -53,18 +58,18 @@ public class USBStorageService {
         return p;
     }
 
-    public Path uploadFile(String requestURL, MultipartFile file) {
-        Path p = Paths.get(requestURL);
-        Path path = Paths.get(p.toString().substring(p.toString().indexOf("/upload") + 7, p.toString().length()));
-        String fileName = file.getOriginalFilename();
-
-        try {
-            path = Files.createFile(path.resolve(fileName));
-            try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path.toString()))) {
-                bos.write(file.getBytes());
-            }
+    @Async
+    public Path uploadFile(Path path, InputStream is) {
+        try (OutputStream os = new BufferedOutputStream(new FileOutputStream(path.toFile(), true))) {
+            IOUtils.copy(is, os);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return path;
