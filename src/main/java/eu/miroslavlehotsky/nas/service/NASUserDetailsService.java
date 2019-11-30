@@ -1,4 +1,4 @@
-package sk.stuba.fiit.service;
+package eu.miroslavlehotsky.nas.service;
 
 import java.util.Optional;
 
@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import sk.stuba.fiit.model.NASUser;
+import eu.miroslavlehotsky.nas.model.NASUser;
 
 public class NASUserDetailsService implements UserDetailsService {
 

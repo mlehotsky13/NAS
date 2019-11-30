@@ -1,4 +1,4 @@
-package sk.stuba.fiit.controller;
+package eu.miroslavlehotsky.nas.controller;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -23,8 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriUtils;
 
-import sk.stuba.fiit.model.FileRecord;
-import sk.stuba.fiit.service.USBStorageService;
+import eu.miroslavlehotsky.nas.model.FileRecord;
+import eu.miroslavlehotsky.nas.service.USBStorageService;
 
 @Controller
 @RequestMapping("/storages")

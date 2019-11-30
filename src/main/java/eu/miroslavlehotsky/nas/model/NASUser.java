@@ -1,4 +1,4 @@
-package sk.stuba.fiit.model;
+package eu.miroslavlehotsky.nas.model;
 
 import lombok.Data;
 

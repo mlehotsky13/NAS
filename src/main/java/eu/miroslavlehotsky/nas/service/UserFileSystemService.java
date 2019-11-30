@@ -1,4 +1,4 @@
-package sk.stuba.fiit.service;
+package eu.miroslavlehotsky.nas.service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
-import sk.stuba.fiit.model.NASUser;
+import eu.miroslavlehotsky.nas.model.NASUser;
 
 public class UserFileSystemService {
 

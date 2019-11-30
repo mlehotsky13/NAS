@@ -1,4 +1,4 @@
-package sk.stuba.fiit.model;
+package eu.miroslavlehotsky.nas.model;
 
 import java.io.IOException;
 import java.nio.file.Files;

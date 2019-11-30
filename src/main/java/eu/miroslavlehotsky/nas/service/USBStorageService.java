@@ -1,4 +1,4 @@
-package sk.stuba.fiit.service;
+package eu.miroslavlehotsky.nas.service;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -18,9 +18,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 
+import eu.miroslavlehotsky.nas.model.FileRecord;
 import net.samuelcampos.usbdrivedetector.USBStorageDevice;
 import net.samuelcampos.usbdrivedetector.detectors.AbstractStorageDeviceDetector;
-import sk.stuba.fiit.model.FileRecord;
 
 @Service
 public class USBStorageService {

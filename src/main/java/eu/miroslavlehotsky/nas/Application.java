@@ -1,4 +1,4 @@
-package sk.stuba.fiit;
+package eu.miroslavlehotsky.nas;
 
 import java.io.IOException;
 
