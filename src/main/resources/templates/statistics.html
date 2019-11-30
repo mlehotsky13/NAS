@@ -9,12 +9,13 @@
 		<div class="row">
 			<div class="col-md-2">
 				<div class="sidebar content-box" style="display: block;">
-					<ul class="nav">
+					<ul class="nav flex-column">
 						<!-- Main menu -->
-						<li><a th:href="@{/storages}"><i class="fas fa-hdd"></i>Storage</a></li>
-						<li class="active"><a th:href="@{/statistics}"><i
+						<li class="nav-item"><a class="nav-link" th:href="@{/storages}"><i
+								class="fas fa-hdd"></i>Storage</a></li>
+						<li class="nav-item active"><a class="nav-link" th:href="@{/statistics}"><i
 								class="fas fa-chart-line"></i>Statistics</a></li>
-						<li><a th:href="@{/settings}"><i class="fas fa-cog"></i>Settings</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/settings}"><i class="fas fa-cog"></i>Settings</a></li>
 					</ul>
 				</div>
 			</div>
