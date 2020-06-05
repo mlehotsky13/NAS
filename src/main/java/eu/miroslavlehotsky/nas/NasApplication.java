@@ -8,9 +8,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync
-public class Application {
+public class NasApplication {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(NasApplication.class, args);
     }
 }
