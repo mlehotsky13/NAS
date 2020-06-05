@@ -10,8 +10,8 @@ buildscript {
 apply plugin: 'java-library'
 apply plugin: 'org.springframework.boot'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 ext {
 	springBootVersion = '2.0.5.RELEASE'
