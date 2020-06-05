@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/settings")
 public class SettingsController {
 
-    @GetMapping
-    public String getSettingsPage(Model model) {
-        return "settings";
-    }
+	@GetMapping
+	public String getSettingsPage(Model model) {
+		return "settings";
+	}
 }

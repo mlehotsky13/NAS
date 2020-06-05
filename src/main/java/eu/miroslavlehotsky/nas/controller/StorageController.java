@@ -30,113 +30,113 @@ import eu.miroslavlehotsky.nas.service.USBStorageService;
 @RequestMapping("/storages")
 public class StorageController {
 
-    @Autowired
-    private USBStorageService storageService;
+	@Autowired
+	private USBStorageService storageService;
 
-    @GetMapping
-    public String getStoragesPage(Model model) {
+	@GetMapping
+	public String getStoragesPage(Model model) {
 
-        model.addAttribute("storages", storageService.getAllUSBStorageDevices());
+		model.addAttribute("storages", storageService.getAllUSBStorageDevices());
 
-        return "storages";
-    }
+		return "storages";
+	}
 
-    @GetMapping("/details")
-    public String getDetailsPage(@RequestParam("path") String path, Model model) {
-        Path p = Paths.get(path).normalize();
+	@GetMapping("/details")
+	public String getDetailsPage(@RequestParam("path") String path, Model model) {
+		Path p = Paths.get(path).normalize();
 
-        if (p.getNameCount() <= 2) {
-            return "redirect:/storages";
-        }
+		if (p.getNameCount() <= 2) {
+			return "redirect:/storages";
+		}
 
-        List<FileRecord> fileRecords = storageService.getRecordsInDirectory(p);
+		List<FileRecord> fileRecords = storageService.getRecordsInDirectory(p);
 
-        model.addAttribute("path", p);
-        model.addAttribute("records", fileRecords);
+		model.addAttribute("path", p);
+		model.addAttribute("records", fileRecords);
 
-        return "details";
-    }
+		return "details";
+	}
 
-    @PostMapping("/createDir")
-    public String createDir(//
-            @RequestParam("path") String path, //
-            @RequestParam("dirname") String dirname, //
-            RedirectAttributes redirectAttributes, //
-            Model model) {
+	@PostMapping("/createDir")
+	public String createDir(//
+			@RequestParam("path") String path, //
+			@RequestParam("dirname") String dirname, //
+			RedirectAttributes redirectAttributes, //
+			Model model) {
 
-        storageService.createDirectory(path, dirname);
+		storageService.createDirectory(path, dirname);
 
-        redirectAttributes.addAttribute("path", path);
+		redirectAttributes.addAttribute("path", path);
 
-        return "redirect:/storages/details";
-    }
+		return "redirect:/storages/details";
+	}
 
-    @PostMapping("/upload/**")
-    public String uploadFile(//
-            @RequestParam("path") String path, //
-            @RequestParam("files") MultipartFile[] files, //
-            RedirectAttributes redirectAttributes) throws IOException {
+	@PostMapping("/upload/**")
+	public String uploadFile(//
+			@RequestParam("path") String path, //
+			@RequestParam("files") MultipartFile[] files, //
+			RedirectAttributes redirectAttributes) throws IOException {
 
-        for (MultipartFile file : files) {
-            Path fullPath = Paths.get(path).resolve(Paths.get(file.getOriginalFilename()));
-            storageService.uploadFile(fullPath, file.getInputStream());
-        }
+		for (MultipartFile file : files) {
+			Path fullPath = Paths.get(path).resolve(Paths.get(file.getOriginalFilename()));
+			storageService.uploadFile(fullPath, file.getInputStream());
+		}
 
-        redirectAttributes.addAttribute("path", path.toString());
+		redirectAttributes.addAttribute("path", path.toString());
 
-        return "redirect:/storages/details";
-    }
+		return "redirect:/storages/details";
+	}
 
-    @PostMapping("/deleteRecord")
-    public String deleteRecord(//
-            @RequestParam("path") String path, //
-            RedirectAttributes redirectAttributes) {
+	@PostMapping("/deleteRecord")
+	public String deleteRecord(//
+			@RequestParam("path") String path, //
+			RedirectAttributes redirectAttributes) {
 
-        Path p = storageService.deleteRecord(path);
+		Path p = storageService.deleteRecord(path);
 
-        redirectAttributes.addAttribute("path", p.getParent().toString());
+		redirectAttributes.addAttribute("path", p.getParent().toString());
 
-        return "redirect:/storages/details";
-    }
+		return "redirect:/storages/details";
+	}
 
-    @PostMapping("/editRecord")
-    public String editRecord(//
-            @RequestParam("path") String path, //
-            @RequestParam("newname") String newname, //
-            RedirectAttributes redirectAttributes) {
+	@PostMapping("/editRecord")
+	public String editRecord(//
+			@RequestParam("path") String path, //
+			@RequestParam("newname") String newname, //
+			RedirectAttributes redirectAttributes) {
 
-        Path p = storageService.editRecord(path, newname);
+		Path p = storageService.editRecord(path, newname);
 
-        redirectAttributes.addAttribute("path", p.getParent().toString());
+		redirectAttributes.addAttribute("path", p.getParent().toString());
 
-        return "redirect:/storages/details";
-    }
+		return "redirect:/storages/details";
+	}
 
-    @GetMapping("/fileRecord/**")
-    public void getFileRecord(HttpServletRequest request, HttpServletResponse response, Model model) {
-        Path p = Paths.get(UriUtils.decode(request.getRequestURL().toString(), "utf-8"));
-        Path path = Paths.get(p.toString().substring(p.toString().indexOf("/fileRecord") + 11, p.toString().length()));
+	@GetMapping("/fileRecord/**")
+	public void getFileRecord(HttpServletRequest request, HttpServletResponse response, Model model) {
+		Path p = Paths.get(UriUtils.decode(request.getRequestURL().toString(), "utf-8"));
+		Path path = Paths.get(p.toString().substring(p.toString().indexOf("/fileRecord") + 11, p.toString().length()));
 
-        try (InputStream is = new BufferedInputStream(new FileInputStream(path.toFile()))) {
-            IOUtils.copy(is, response.getOutputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                response.getOutputStream().close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+		try (InputStream is = new BufferedInputStream(new FileInputStream(path.toFile()))) {
+			IOUtils.copy(is, response.getOutputStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				response.getOutputStream().close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-    @GetMapping("/eject")
-    public String ejectStorage(@RequestParam("mountPoint") String mountPoint) throws InterruptedException {
+	@GetMapping("/eject")
+	public String ejectStorage(@RequestParam("mountPoint") String mountPoint) throws InterruptedException {
 
-        storageService.ejectStorage(mountPoint);
+		storageService.ejectStorage(mountPoint);
 
-        Thread.currentThread().sleep(1_000);
+		Thread.sleep(1_000);
 
-        return "redirect:/storages";
-    }
+		return "redirect:/storages";
+	}
 }

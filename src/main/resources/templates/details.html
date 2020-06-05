@@ -47,6 +47,7 @@
 							<thead>
 								<tr>
 									<th>Name</th>
+									<th>Size</th>
 									<th>Type</th>
 									<th>Owner</th>
 									<th>Last modified</th>
@@ -65,6 +66,7 @@
 											class="fas fa-folder"></i> <i th:case="'File'"
 											class="fas fa-file"></i> <span class="deviceName"
 											th:text="${record.name}"></span></td>
+										<td th:text="${record.size}" />
 										<td th:text="${record.type}" />
 										<td th:text="${record.owner}" />
 										<td th:text="${record.lastModified}" />

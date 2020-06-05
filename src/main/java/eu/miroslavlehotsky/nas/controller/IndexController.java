@@ -1,16 +1,15 @@
 package eu.miroslavlehotsky.nas.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 @RequestMapping("/")
 public class IndexController {
 
-    @GetMapping
-    public ModelAndView redirectPage() {
-        return new ModelAndView("redirect:/storages");
-    }
+	@GetMapping
+	public String redirectPage() {
+		return "redirect:/storages";
+	}
 }

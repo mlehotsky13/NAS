@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/statistics")
 public class StatisticsController {
 
-    @GetMapping
-    public String getStatisticsPage(Model model) {
-        return "statistics";
-    }
+	@GetMapping
+	public String getStatisticsPage(Model model) {
+		return "statistics";
+	}
 }

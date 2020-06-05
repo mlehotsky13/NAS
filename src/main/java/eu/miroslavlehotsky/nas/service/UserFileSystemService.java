@@ -15,36 +15,36 @@ import eu.miroslavlehotsky.nas.model.NASUser;
 
 public class UserFileSystemService {
 
-    private static final ObjectMapper om = new ObjectMapper();
+	private static final ObjectMapper om = new ObjectMapper();
 
-    public Optional<NASUser> getUserByName(String username) {
-        return getUsers().stream().filter(u -> username.equals(u.getUsername())).findFirst();
-    }
+	public Optional<NASUser> getUserByName(String username) {
+		return getUsers().stream().filter(u -> username.equals(u.getUsername())).findFirst();
+	}
 
-    private Set<NASUser> getUsers() {
-        Set<NASUser> users = new HashSet<>();
+	private Set<NASUser> getUsers() {
+		Set<NASUser> users = new HashSet<>();
 
-        ArrayNode usersJson = loadUsersJson();
-        for (JsonNode user : usersJson) {
-            try {
-                users.add(om.treeToValue(user, NASUser.class));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-        }
+		ArrayNode usersJson = loadUsersJson();
+		for (JsonNode user : usersJson) {
+			try {
+				users.add(om.treeToValue(user, NASUser.class));
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+		}
 
-        return users;
-    }
+		return users;
+	}
 
-    private ArrayNode loadUsersJson() {
-        ArrayNode usersJson = om.createArrayNode();
+	private ArrayNode loadUsersJson() {
+		ArrayNode usersJson = om.createArrayNode();
 
-        try (InputStream is = getClass().getResourceAsStream("/users.json")) {
-            usersJson = (ArrayNode) om.readTree(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		try (InputStream is = getClass().getResourceAsStream("/users.json")) {
+			usersJson = (ArrayNode) om.readTree(is);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        return usersJson;
-    }
+		return usersJson;
+	}
 }
