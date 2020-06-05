@@ -1,67 +1,47 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
-    }
+plugins {
+	id 'org.springframework.boot' version '2.3.0.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
 }
 
-apply plugin: 'java-library'
-apply plugin: 'org.springframework.boot'
-
+group = 'eu.miroslavlehotsky.nas'
 sourceCompatibility = 11
-targetCompatibility = 11
 
-ext {
-	springBootVersion = '2.0.5.RELEASE'
-	bootstrapVersion = '4.1.3'
-	fontAwesomeVersion = '5.4.1'
-	jQueryVersion = '3.3.1-1'
-	lombokVersion = '1.16.18'
-	jacksonVersion = '2.9.7'
- 	fileUploadVersion = '1.3.3'
-}
-
-dependencies {
-	compile(
-		// SpringBoot
-		[group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion],
-		[group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion],
-		[group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion],
-		
-		// Hot swapping
-		[group: 'org.springframework.boot', name: 'spring-boot-devtools', version: springBootVersion],
-		
-		// Web jars
-		[group: 'org.webjars', name: 'bootstrap', version: bootstrapVersion],
-        [group: 'org.webjars', name: 'font-awesome', version: fontAwesomeVersion],
-        [group: 'org.webjars', name: 'jquery', version: jQueryVersion],
-		
-		// Lombok
-		[group: 'org.projectlombok', name: 'lombok', version: lombokVersion],
-		
-		// Jackson
-        [group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion],
-        [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion],
-
-		// Apache Commons FileUpload
-        // [group: 'commons-fileupload', name: 'commons-fileupload', version: fileUploadVersion],
-        
-        // USB Storage detector
-        [group: 'net.samuelcampos', name: 'usbdrivedetector', version: '2.0.4']
-	)
-	
-	annotationProcessor (
-		[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
-	)
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
 
 repositories {
 	mavenCentral()
 }
 
-bootJar {
-    baseName = 'NAS'
-    version =  '0.1.0'
+ext {
+	bootstrapVersion = '4.1.3'
+	fontAwesomeVersion = '5.4.1'
+	jQueryVersion = '3.3.1-1'
+ 	fileUploadVersion = '1.3.3'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'net.samuelcampos:usbdrivedetector:2.0.4'
+	// implementation 'commons-fileupload:commons-fileupload:$fileUploadVersion'
+
+	compileOnly 'org.projectlombok:lombok'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	runtimeOnly 'org.webjars:bootstrap:4.1.3'
+	runtimeOnly 'org.webjars:font-awesome:5.4.1'
+	runtimeOnly 'org.webjars:jquery:3.3.1-1'
+
+	annotationProcessor 'org.projectlombok:lombok'
 }
