@@ -43,6 +43,7 @@ dependencies {
 	runtimeOnly 'org.webjars:font-awesome:5.4.1'
 	runtimeOnly 'org.webjars:jquery:3.3.1-1'
 	runtimeOnly 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	runtimeOnly 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 	annotationProcessor 'org.projectlombok:lombok'
 }

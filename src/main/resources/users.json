@@ -3,7 +3,21 @@
         "username": "admin",
         "password": "$2a$11$asBuhaRMkFBwwUaXF2qjhetHP1S3JthKKSo1Rhb9KfPyyhe9GA7R.",
         "roles": [
-            "admin"
+            "ADMIN"
+        ]
+    },
+    {
+        "username": "miro",
+        "password": "$2a$11$JCRL0/cV3aK664MLQGjP/.IC8btX1k7HlNodRkqDP8VwzS2SGE7Se",
+        "roles": [
+            "RW_USER"
+        ]
+    },
+    {
+        "username": "guest",
+        "password": "$2a$11$CAl9zcYdooByNUCYgM0WxO4X87A4ta5jkFQlGKhDStsHj2D3p9fwa",
+        "roles": [
+            "R_USER"
         ]
     }
 ]
