@@ -31,7 +31,8 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'net.samuelcampos:usbdrivedetector:2.0.4'
+	implementation 'net.samuelcampos:usbdrivedetector:2.1.1'
+	implementation 'org.zeroturnaround:zt-zip:1.14'
 	// implementation 'commons-fileupload:commons-fileupload:$fileUploadVersion'
 
 	compileOnly 'org.projectlombok:lombok'

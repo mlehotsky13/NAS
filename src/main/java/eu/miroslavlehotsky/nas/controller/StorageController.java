@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriUtils;
+import org.zeroturnaround.zip.ZipUtil;
 
 import eu.miroslavlehotsky.nas.model.FileRecord;
 import eu.miroslavlehotsky.nas.service.USBStorageService;
@@ -117,6 +119,14 @@ public class StorageController {
 		Path p = Paths.get(UriUtils.decode(request.getRequestURL().toString(), "utf-8"));
 		Path path = Paths.get(p.toString().substring(p.toString().indexOf("/fileRecord") + 11, p.toString().length()));
 
+		boolean tempZip = false;
+		if (Files.isDirectory(path)) {
+			Path target = Path.of(path.getFileName().toString() + ".zip");
+			ZipUtil.pack(path.toFile(), target.toFile());
+			path = target;
+			tempZip = true;
+		}
+
 		try (InputStream is = new BufferedInputStream(new FileInputStream(path.toFile()))) {
 			IOUtils.copy(is, response.getOutputStream());
 		} catch (IOException e) {
@@ -124,6 +134,10 @@ public class StorageController {
 		} finally {
 			try {
 				response.getOutputStream().close();
+
+				if (tempZip) {
+					Files.delete(path);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
