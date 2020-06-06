@@ -2,16 +2,20 @@ package eu.miroslavlehotsky.nas.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import eu.miroslavlehotsky.nas.model.NASUser;
 
+@Service
 public class NASUserDetailsService implements UserDetailsService {
 
-	private UserFileSystemService userFileSystemService = new UserFileSystemService();
+	@Autowired
+	private UserFileSystemService userFileSystemService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
