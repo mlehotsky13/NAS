@@ -12,7 +12,7 @@ Táto aplikácia umožňuje prístup k USB úložným zariadeniam prostredníctv
 
 # Backend
 
-Aplikáciu som implementoval v jazyku Java s využitím aplikačného frameworku Spring(najmä sub-project SpringBoot) s embedded `Tomcat` serverom. Aplikácia je určená pre UNIXové systémy, pričom pre manipuláciu so súborovým systémom USB zariadení používa shell poskytnutý hostovacím prostredím(PC/operačný systém, na ktorom je táto aplikácia spustená). Ako vstupné body pre prichádzajúce HTTP požiadavky generované užívateľskou aktivitou vo webovom prehliadači slúžia viaceré kontroléri. Každý kontrolér obsahuje handler metódy, ktoré sú vyvolané v závislosti od atribútov jednotlivých HTTP požiadaviek(napr. HTTP metóda, URI, query parametre, ...), volajú metódy servisnej vrstvy a posielajú získaný model na jednotlivé Views, kvôli renderovaniu stránky.
+Aplikáciu som implementoval v jazyku Java s využitím aplikačného frameworku Spring(najmä sub-project SpringBoot) s embedded Tomcat serverom. Aplikácia je určená pre UNIXové systémy, pričom pre manipuláciu so súborovým systémom USB zariadení používa shell poskytnutý hostovacím prostredím(PC/operačný systém, na ktorom je táto aplikácia spustená). Ako vstupné body pre prichádzajúce HTTP požiadavky generované užívateľskou aktivitou vo webovom prehliadači slúžia viaceré kontroléri. Každý kontrolér obsahuje handler metódy, ktoré sú vyvolané v závislosti od atribútov jednotlivých HTTP požiadaviek(napr. HTTP metóda, URI, query parametre, ...), volajú metódy servisnej vrstvy a posielajú získaný model na jednotlivé Views, kvôli renderovaniu stránky.
 
 # Frontend
 
