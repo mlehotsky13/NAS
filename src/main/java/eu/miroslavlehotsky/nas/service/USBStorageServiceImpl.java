@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 
@@ -46,6 +47,7 @@ public class USBStorageServiceImpl implements USBStorageService {
 		return fileRecords;
 	}
 
+	@PreAuthorize("hasRole('ROLE_RW_USER')")
 	public Path createDirectory(String path, String dirName) {
 		Path p = Paths.get(path).resolve(dirName);
 
@@ -59,6 +61,7 @@ public class USBStorageServiceImpl implements USBStorageService {
 	}
 
 	@Async
+	@PreAuthorize("hasRole('ROLE_RW_USER')")
 	public Path uploadFile(Path path, InputStream is) {
 		try (OutputStream os = new BufferedOutputStream(new FileOutputStream(path.toFile(), true))) {
 			IOUtils.copy(is, os);
@@ -75,6 +78,7 @@ public class USBStorageServiceImpl implements USBStorageService {
 		return path;
 	}
 
+	@PreAuthorize("hasRole('ROLE_RW_USER')")
 	public Path deleteRecord(String path) {
 		Path p = Paths.get(path);
 
@@ -87,6 +91,7 @@ public class USBStorageServiceImpl implements USBStorageService {
 		return p;
 	}
 
+	@PreAuthorize("hasRole('ROLE_RW_USER')")
 	public Path editRecord(String path, String newName) {
 		Path p = Paths.get(path);
 
