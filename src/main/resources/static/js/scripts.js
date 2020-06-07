@@ -63,6 +63,12 @@ $(document).ready(function () {
   });
 });
 
+$(document).ready(function () {
+  $(document).on("click", "#logoutBtn", function () {
+    window.location = '/logout';
+  });
+});
+
 // $(document).ready(function() {
 //     $('#uploadBtn').click(function(event){
 //     	event.preventDefault();
