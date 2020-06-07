@@ -71,9 +71,9 @@
 										<td th:text="${record.owner}" />
 										<td th:text="${record.lastModified}" />
 										<td>
-											<i class="downloadRecord fas fa-download fa-lg" title="Download"/>
-											<i sec:authorize="hasRole('RW_USER')" class="editRecord far fa-edit fa-lg" title="Edit"/>
-											<i sec:authorize="hasRole('RW_USER')" class="deleteRecord fas fa-trash-alt fa-lg" title="Delete"/>
+											<i class="downloadRecord fas fa-download fa-lg" title="Download"></i>
+											<i sec:authorize="hasRole('RW_USER')" class="editRecord far fa-edit fa-lg" title="Edit"></i>
+											<i sec:authorize="hasRole('RW_USER')" class="deleteRecord fas fa-trash-alt fa-lg" title="Delete"></i>
 										</td>
 									</tr>
 								</th:block>
