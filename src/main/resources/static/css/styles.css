@@ -746,3 +746,8 @@ i.downloadRecord, i.editRecord, i.deleteRecord {
 i.downloadRecord:hover, i.editRecord:hover, i.deleteRecord:hover {
 	cursor: pointer;
 }
+
+#logoutBtn {
+	margin-top: 10px;
+	margin-right: 20px;
+}

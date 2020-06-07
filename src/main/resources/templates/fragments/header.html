@@ -27,16 +27,20 @@
 </head>
 
 <div class="header" th:fragment="header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5">
-				<!-- Logo -->
-				<div class="logo">
-					<h1>
-						<a href="#">Network Attached Storage</a>
-					</h1>
-				</div>
+	<div class="row">
+		<div class="col-auto mr-auto">
+			<!-- Logo -->
+			<div class="logo" style="margin-left: 20px">
+				<h1>
+					<a href="#">Network Attached Storage</a>
+				</h1>
 			</div>
+		</div>
+		<div class="col-auto">
+			<button id="logoutBtn" type="button" class="btn btn-secondary btn-sm">
+				<i class="fas fa-sign-out-alt"></i>
+				<span class="deviceName">Logout</span>
+			</button>
 		</div>
 	</div>
 </div>
