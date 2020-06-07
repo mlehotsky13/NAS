@@ -22,10 +22,11 @@ public class UserFileSystemServiceImpl implements UserFileSystemService {
 
 	@Override
 	public Optional<NASUser> getUserByName(String username) {
-		return getUsers().stream().filter(u -> username.equals(u.getUsername())).findFirst();
+		return getAllUsers().stream().filter(u -> username.equals(u.getUsername())).findFirst();
 	}
 
-	private Set<NASUser> getUsers() {
+	@Override
+	public Set<NASUser> getAllUsers() {
 		Set<NASUser> users = new HashSet<>();
 
 		ArrayNode usersJson = loadUsersJson();

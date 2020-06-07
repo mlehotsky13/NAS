@@ -12,10 +12,10 @@
 					<ul class="nav flex-column">
 						<!-- Main menu -->
 						<li class="nav-item active"><a class="nav-link" th:href="@{/storages}"><i
-								class="fas fa-hdd"></i>Storage</a></li>
+								class="fas fa-hdd"></i>Storages</a></li>
 						<li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/statistics}"><i
 								class="fas fa-chart-line"></i>Statistics</a></li>
-						<li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/settings}"><i class="fas fa-cog"></i>Settings</a></li>
+						<li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/users}"><i class="fa fa-users"></i>Users</a></li>
 					</ul>
 				</div>
 			</div>

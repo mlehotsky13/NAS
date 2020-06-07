@@ -1,7 +1,7 @@
 package eu.miroslavlehotsky.nas.service;
 
-import java.util.Arrays;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +30,8 @@ public class NASUserDetailsService implements UserDetailsService {
 				.build())//
 				.orElseThrow(() -> new UsernameNotFoundException("Could not find user " + username + "."));
 	}
-	
-	private String[] getStringRoles(RoleType roles[]) {
-		return Arrays.stream(roles).map(RoleType::name).collect(Collectors.toList()).toArray(new String[roles.length]);
+
+	private String[] getStringRoles(Set<RoleType> roles) {
+		return roles.stream().map(RoleType::name).collect(Collectors.toList()).toArray(new String[roles.size()]);
 	}
 }

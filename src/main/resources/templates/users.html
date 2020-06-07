@@ -12,19 +12,40 @@
 					<ul class="nav flex-column">
 						<!-- Main menu -->
 						<li class="nav-item"><a class="nav-link" th:href="@{/storages}"><i
-								class="fas fa-hdd"></i>Storage</a></li>
+								class="fas fa-hdd"></i>Storages</a></li>
 						<li sec:authorize="hasRole('ADMIN')" class="nav-item"><a class="nav-link" th:href="@{/statistics}"><i
 								class="fas fa-chart-line"></i>Statistics</a></li>
-						<li sec:authorize="hasRole('ADMIN')" class="nav-item active"><a class="nav-link" th:href="@{/settings}"><i class="fas fa-cog"></i>Settings</a></li>
+						<li sec:authorize="hasRole('ADMIN')" class="nav-item active"><a class="nav-link" th:href="@{/users}"><i class="fa fa-users"></i>Users</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-10">
 				<div class="content-box-large">
 					<div class="panel-heading">
-						<div class="panel-title"></div>
+						<div class="panel-title"><h4>Users</h4></div>
 					</div>
-					<div class="panel-body"></div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Roles</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<th:block th:each="user, i: ${users}">
+									<tr>
+										<td th:text="${user.username}" />
+										<td th:text="${user.roles}" />
+										<td>
+											<i class="editUser far fa-edit fa-lg" title="Edit"></i>
+											<i class="deleteUser fas fa-trash-alt fa-lg" title="Delete"></i>
+										</td>
+									</tr>
+								</th:block>
+							</tbody>
+					</div>
 				</div>
 			</div>
 		</div>
