@@ -32,12 +32,12 @@
 					</div>
 					<div class="panel-body">
 						<div class="options">
-							<button id="createDirBtn" type="button"
+							<button sec:authorize="hasRole('RW_USER')" id="createDirBtn" type="button"
 								class="btn btn-success btn-sm" data-toggle="modal">
 								<i class="fas fa-plus"></i><span class="deviceName">Create
 									directory</span>
 							</button>
-							<button id="uploadFileBtn" type="button"
+							<button sec:authorize="hasRole('RW_USER')" id="uploadFileBtn" type="button"
 								class="btn btn-primary btn-sm">
 								<i class="fas fa-upload"></i><span class="deviceName">Upload
 									files</span>
@@ -51,7 +51,7 @@
 									<th>Type</th>
 									<th>Owner</th>
 									<th>Last modified</th>
-									<th>Delete</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -71,9 +71,10 @@
 										<td th:text="${record.owner}" />
 										<td th:text="${record.lastModified}" />
 										<td>
-											<i class="downloadRecord fas fa-download fa-lg" title="Download"></i>
-											<i class="editRecord far fa-edit fa-lg" title="Edit"></i> <i
-											class="deleteRecord fas fa-trash-alt fa-lg" title="Delete"></i></td>
+											<i class="downloadRecord fas fa-download fa-lg" title="Download"/>
+											<i sec:authorize="hasRole('RW_USER')" class="editRecord far fa-edit fa-lg" title="Edit"/>
+											<i sec:authorize="hasRole('RW_USER')" class="deleteRecord fas fa-trash-alt fa-lg" title="Delete"/>
+										</td>
 									</tr>
 								</th:block>
 							</tbody>

@@ -3,7 +3,8 @@
         "username": "admin",
         "password": "$2a$11$asBuhaRMkFBwwUaXF2qjhetHP1S3JthKKSo1Rhb9KfPyyhe9GA7R.",
         "roles": [
-            "ADMIN"
+            "ADMIN",
+            "RW_USER"
         ]
     },
     {
