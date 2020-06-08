@@ -133,7 +133,7 @@
 <div class="modal fade" id="editUserModal"
 	th:fragment="modal-edit-user" xmlns:th="http://www.thymeleaf.org">
 	<div class="modal-dialog" role="document">
-		<form method="POST" th:action="@{/storages/editRecord}">
+		<form id="editUserModalForm" method="POST" th:action="@{/users/editUser}">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Edit</h5>
@@ -143,12 +143,23 @@
 				</div>
 				<div class="modal-body">
 					<input type="text" name="username" hidden />
+					<input type="text" name="userroles" hidden />
 					<!--<input class="form-control" type="text" name="newusername" />-->
-					<select id="roleSelect" class="selectpicker" multiple data-live-search="true" name="roles">
+					<!--<select id="roleSelect" class="selectpicker" multiple data-live-search="true" name="roles">
 						<th:block th:each="role : ${roles}">
 							<option th:text="${role}" th:value="${role}" />
 						</th:block>
-					</select>
+					</select>-->
+					<th:block th:each="role : ${roles}">
+						<div class="row">
+    						<div class="col roleName">
+    							<span th:text="${role}"/>
+    						</div>
+							<div class="col">
+    							<input type="checkbox" class="form-check-input">
+    						</div>
+  						</div>
+					</th:block>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm"

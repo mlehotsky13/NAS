@@ -44,11 +44,11 @@
 							</thead>
 							<tbody>
 								<th:block th:each="user, i: ${users}">
-									<tr>
-										<td>
+									<tr th:user="${user.username}">
+										<td class="username">
 											<span class="userName" th:text="${user.username}"></span>
 										</td>
-										<td th:text="${user.roles}" />
+										<td class="userroles" th:text="${user.roles}" />
 										<td>
 											<i class="editUser far fa-edit fa-lg" title="Edit"></i>
 											<i class="deleteUser fas fa-trash-alt fa-lg" title="Delete"></i>

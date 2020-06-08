@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import eu.miroslavlehotsky.nas.model.NASUser;
+import eu.miroslavlehotsky.nas.model.cst.RoleType;
 
 public interface UserFileSystemService {
 
@@ -26,4 +27,6 @@ public interface UserFileSystemService {
 	 * @param username of user to delete
 	 */
 	void deleteUser(String username);
+
+	void editUser(String username, Set<RoleType> roles);
 }

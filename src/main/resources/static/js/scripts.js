@@ -78,9 +78,29 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $(document).on("click", ".editUser", function () {
-    $("#editUserModal").find("input[name=username]").val($(this).closest("tr").attr("path"));
-    $("#editUserModal").find("input[name=newusername]").val($(this).closest("tr").find("span").first().text());
-    $("#editUserModal").modal('show');
+  	var editUserBtn = $(this);
+    $("#editUserModal").find("input[name=username]").val($(this).closest("tr").attr("user"));
+	$("#editUserModal").modal('show');
+	$("#editUserModal").find("input[type=checkbox]").each(function() {
+		var userRolesString = editUserBtn.closest("tr").find("td.userroles").text();
+		var userRoles = userRolesString.substring(1, userRolesString.length - 1).split(", ");
+		var currentRole = $(this).closest("div.row").find("div.roleName span").first().text();
+		$(this).prop('checked', userRoles.includes(currentRole)); 
+	});
+  });
+});
+
+$(document).ready(function () {
+  $("#editUserModalForm").submit(function () {
+	var roles = [];
+	$("#editUserModal").find("input[type=checkbox]").each(function() {
+		var currentRole = $(this).closest("div.row").find("div.roleName span").first().text();
+		if ($(this).is(':checked')) {
+			roles.push(currentRole);
+		}
+	});
+	
+	$("#editUserModal").find("input[name=userroles]").val(roles);
   });
 });
 

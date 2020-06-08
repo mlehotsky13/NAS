@@ -751,3 +751,7 @@ i.downloadRecord:hover, i.editRecord:hover, i.deleteRecord:hover, i.editUser:hov
 	margin-top: 10px;
 	margin-right: 20px;
 }
+
+div.roleName {
+	text-align: left;
+}

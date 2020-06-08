@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import eu.miroslavlehotsky.nas.model.NASUser;
+import eu.miroslavlehotsky.nas.model.cst.RoleType;
 
 @Service
 public class UserFileSystemServiceImpl implements UserFileSystemService {
@@ -51,6 +52,17 @@ public class UserFileSystemServiceImpl implements UserFileSystemService {
 		try {
 			Set<NASUser> users = getAllUsers().stream().filter(user -> !username.equals(user.getUsername()))
 					.collect(Collectors.toSet());
+			saveUsersJson(users);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void editUser(String username, Set<RoleType> roles) {
+		try {
+			Set<NASUser> users = getAllUsers();
+			users.stream().filter(user -> username.equals(user.getUsername())).forEach(user -> user.setRoles(roles));
 			saveUsersJson(users);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
