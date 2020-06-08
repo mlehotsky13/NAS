@@ -20,4 +20,10 @@ public interface UserFileSystemService {
 	 * @return all users
 	 */
 	Set<NASUser> getAllUsers();
+
+	/**
+	 * Delete user by its username
+	 * @param username of user to delete
+	 */
+	void deleteUser(String username);
 }

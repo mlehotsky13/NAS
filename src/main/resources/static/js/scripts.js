@@ -69,6 +69,28 @@ $(document).ready(function () {
   });
 });
 
+$(document).ready(function () {
+  $(document).on("click", ".deleteUser", function () {
+    $("#deleteUserModal").find("input[name=username]").val($(this).closest("tr").find("span").first().text());
+    $("#deleteUserModal").modal('show');
+  });
+});
+
+$(document).ready(function () {
+  $(document).on("click", ".editUser", function () {
+    $("#editUserModal").find("input[name=username]").val($(this).closest("tr").attr("path"));
+    $("#editUserModal").find("input[name=newusername]").val($(this).closest("tr").find("span").first().text());
+    $("#editUserModal").modal('show');
+  });
+});
+
+$(document).ready(function () {
+  $("a.refresh-users").click(function () {
+    $(".panel-body").load("/users table");
+    window.location.reload();
+  });
+});
+
 // $(document).ready(function() {
 //     $('#uploadBtn').click(function(event){
 //     	event.preventDefault();

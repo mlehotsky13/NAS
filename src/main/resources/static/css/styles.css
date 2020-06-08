@@ -698,7 +698,7 @@ body {
 	}
 }
 
-span.deviceName {
+span.deviceName, span.userName {
 	margin-left: 5px;
 }
 
@@ -739,11 +739,11 @@ div.modal-content {
 	color: red;
 }
 
-i.downloadRecord, i.editRecord, i.deleteRecord {
+i.downloadRecord, i.editRecord, i.deleteRecord, i.editUser, i.deleteUser {
 	padding: 2px;
 }
 
-i.downloadRecord:hover, i.editRecord:hover, i.deleteRecord:hover {
+i.downloadRecord:hover, i.editRecord:hover, i.deleteRecord:hover, i.editUser:hover, i.deleteUser:hover {
 	cursor: pointer;
 }
 

@@ -23,8 +23,17 @@
 				<div class="content-box-large">
 					<div class="panel-heading">
 						<div class="panel-title"><h4>Users</h4></div>
+					<div class="panel-options">
+						<a href="#" class="refresh-users">
+							<i class="fas fa-sync-alt"></i>
+						</a>
 					</div>
 					<div class="panel-body">
+						<div class="options">
+							<button id="addUserBtn" type="button" class="btn btn-success btn-sm" data-toggle="modal">
+								<i class="fas fa-plus"></i><span class="userName">Add user</span>
+							</button>
+						</div>
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -36,7 +45,9 @@
 							<tbody>
 								<th:block th:each="user, i: ${users}">
 									<tr>
-										<td th:text="${user.username}" />
+										<td>
+											<span class="userName" th:text="${user.username}"></span>
+										</td>
 										<td th:text="${user.roles}" />
 										<td>
 											<i class="editUser far fa-edit fa-lg" title="Edit"></i>
@@ -51,6 +62,8 @@
 		</div>
 	</div>
 	<!-- <footer lang="en" th:replace="fragments/footer :: footer"></footer> -->
+	<div lang="en" th:replace="fragments/modals :: modal-edit-user"></div>
+	<div lang="en" th:replace="fragments/modals :: modal-delete-user"></div>
 </body>
 
 </html>
