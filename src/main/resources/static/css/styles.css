@@ -752,6 +752,10 @@ i.downloadRecord:hover, i.editRecord:hover, i.deleteRecord:hover, i.editUser:hov
 	margin-right: 20px;
 }
 
-div.roleName {
+div.roleName, div.userName, div.userPassword {
 	text-align: left;
+}
+
+#addUserModal .form-check-input {
+	margin-left: 0px;
 }

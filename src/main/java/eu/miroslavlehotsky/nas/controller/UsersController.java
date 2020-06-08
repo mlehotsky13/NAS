@@ -44,4 +44,12 @@ public class UsersController {
 
 		return "redirect:/users";
 	}
+
+	@PostMapping("/addUser")
+	public String addUser(@RequestParam String username, @RequestParam String password, @RequestParam Set<String> userroles) {
+		Set<RoleType> roles = userroles.stream().map(RoleType::valueOf).collect(Collectors.toSet());
+		userFileSystemService.addUser(username, password, roles);
+
+		return "redirect:/users";
+	}
 }

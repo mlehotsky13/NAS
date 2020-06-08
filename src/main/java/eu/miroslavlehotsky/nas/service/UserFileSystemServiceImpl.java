@@ -11,6 +11,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,6 +27,9 @@ import eu.miroslavlehotsky.nas.model.cst.RoleType;
 public class UserFileSystemServiceImpl implements UserFileSystemService {
 
 	private static final ObjectMapper om = new ObjectMapper();
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public Optional<NASUser> getUserByName(String username) {
@@ -63,6 +68,17 @@ public class UserFileSystemServiceImpl implements UserFileSystemService {
 		try {
 			Set<NASUser> users = getAllUsers();
 			users.stream().filter(user -> username.equals(user.getUsername())).forEach(user -> user.setRoles(roles));
+			saveUsersJson(users);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void addUser(String username, String password, Set<RoleType> roles) {
+		try {
+			Set<NASUser> users = getAllUsers();
+			users.add(new NASUser(username, passwordEncoder.encode(password), roles));
 			saveUsersJson(users);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();

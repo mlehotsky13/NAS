@@ -91,7 +91,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  $("#editUserModalForm").submit(function () {
+  $("#editUserModalForm").submit(function() {
 	var roles = [];
 	$("#editUserModal").find("input[type=checkbox]").each(function() {
 		var currentRole = $(this).closest("div.row").find("div.roleName span").first().text();
@@ -101,6 +101,26 @@ $(document).ready(function () {
 	});
 	
 	$("#editUserModal").find("input[name=userroles]").val(roles);
+  });
+});
+
+$(document).ready(function () {
+  $(document).on("click", "#addUserBtn", function () {
+    $("#addUserModal").modal('show');
+  });
+});
+
+$(document).ready(function () {
+  $("#addUserModalForm").submit(function() {
+	var roles = [];
+	$("#addUserModal").find("input[type=checkbox]").each(function() {
+		var currentRole = $(this).closest("div.row").find("div.roleName span").first().text();
+		if ($(this).is(':checked')) {
+			roles.push(currentRole);
+		}
+	});
+	
+	$("#addUserModal").find("input[name=userroles]").val(roles);
   });
 });
 

@@ -144,12 +144,6 @@
 				<div class="modal-body">
 					<input type="text" name="username" hidden />
 					<input type="text" name="userroles" hidden />
-					<!--<input class="form-control" type="text" name="newusername" />-->
-					<!--<select id="roleSelect" class="selectpicker" multiple data-live-search="true" name="roles">
-						<th:block th:each="role : ${roles}">
-							<option th:text="${role}" th:value="${role}" />
-						</th:block>
-					</select>-->
 					<th:block th:each="role : ${roles}">
 						<div class="row">
     						<div class="col roleName">
@@ -165,6 +159,57 @@
 					<button type="button" class="btn btn-secondary btn-sm"
 						data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-primary btn-sm">Edit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal fade" id="addUserModal"
+	th:fragment="modal-edit-user" xmlns:th="http://www.thymeleaf.org">
+	<div class="modal-dialog" role="document">
+		<form id="addUserModalForm" method="POST" th:action="@{/users/addUser}">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Edit</h5>
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row mb-3 userName">
+    					<div class="col-4">
+    						<span>Username</span>
+    					</div>
+    					<div class="col-auto">
+							<input id="usernameInput" type="text" name="username" />
+							<input type="text" name="userroles" hidden />
+						</div>
+					</div>
+					<div class="row mb-3 userPassword">
+    					<div class="col-4">
+    						<span>Password</span>
+    					</div>
+    					<div class="col-auto">
+							<input id="usernameInput" type="text" name="password" />
+						</div>
+					</div>
+					<th:block th:each="role : ${roles}">
+						<div class="row">
+							<div class="col-4 roleName">
+								<span th:text="${role}"/>
+    						</div>
+							<div class="col-auto">
+    							<input type="checkbox" class="form-check-input">
+    						</div>
+						</div>
+					</th:block>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm"
+						data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary btn-sm">Add</button>
 				</div>
 			</div>
 		</form>
