@@ -1,0 +1,10 @@
+language: java
+jdk:
+- openjdk8
+script:
+- "./gradlew clean build"
+- export RELEASE_NUMBER=1
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./deploy/prepare-release.sh; fi
+env:
+  global:
+    secure: X+UNon1fnjTkOg3reWvtVNlVRbWnvwLeaBP9npF3xgZezfmviygBazZUYQYoHaPbh3G1c83prk7sEDYyQ6Z58x+fgXeE+KjD5ZwkMZS5k9/aIR/GGjEtzBpCNoL3ysiNggrhWyi3FGjj7EccMdMjIUUnwC2knLM87oLBzR1Do2RxA4yQtFoc4KE9/P9/3brTMHxEvdIp0vc3nUsB2l2/V4LdWrH0j6AAt5B0kDr02rP92u7WmftCpnXmzjdQcul94QMglvhtAOxPrP9Ytp6vGBsryZzI31/prtynxEqYLwxE3tJ9xDzd0oofvQZK3aGKyklsSc+z7ysC1ejgoLRFeHAaARNbwrtrakUPAACZS2RHH2/I5edEpR40/sl9D6Y4CqM53L4OeILoxAYedg4QGPVneppasyIPSrJLAg16UIYrBd1iBRWAtMt1UuKQqLC5bLNtfnJMU60mbwq2DTLJ++8aqpfKLTWaqWpNCjYYFq0R2DNsHjdGeSIrK7JbzN4pcmKocG9aNrnjcrM/6vqIOZ8dID/UTg9Di0v3+lSFDNeaHR52Dlb6J043gs8qy1pReWcLnJiS8gKhhXaI8UzBvnVtTEYUKFbhzGxo+QkOr2s3XOJvA1xqO1T2RIjBlVIzzqu/tcr2CTHVNbY3dy8lsLU7kHqz70uAlrOkjzQ134U=
