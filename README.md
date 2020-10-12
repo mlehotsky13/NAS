@@ -1,12 +1,13 @@
 # Network Attached Storage
 
 Táto aplikácia umožňuje prístup k USB úložným zariadeniam prostredníctvom webového rozhrania. Kľúčové funkcionality:
-- zoznam pripojených USB úložných zariadení na hostovi
-- prístup k zložkám/súborom na vybranom USB úložnom zariadení
-- vytváranie nových zložiek na USB úložnom zariadení
-- mazanie existujúcich zložiek a súborov na USB úložnom zariadení
-- upload súborov na USB úložné zariadenie
-- bezpečné odpojenie USB úložného zariadenia na hostovi
+
+-   zoznam pripojených USB úložných zariadení na hostovi
+-   prístup k zložkám/súborom na vybranom USB úložnom zariadení
+-   vytváranie nových zložiek na USB úložnom zariadení
+-   mazanie existujúcich zložiek a súborov na USB úložnom zariadení
+-   upload súborov na USB úložné zariadenie
+-   bezpečné odpojenie USB úložného zariadenia na hostovi
 
 # Architektúra aplikácie
 
