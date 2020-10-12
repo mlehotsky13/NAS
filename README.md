@@ -1,5 +1,7 @@
 # Network Attached Storage
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4445c6910f164366942d785223bba7fd)](https://app.codacy.com/gh/mlehotsky13/NAS?utm_source=github.com&utm_medium=referral&utm_content=mlehotsky13/NAS&utm_campaign=Badge_Grade)
+
 Táto aplikácia umožňuje prístup k USB úložným zariadeniam prostredníctvom webového rozhrania. Kľúčové funkcionality:
 
 -   zoznam pripojených USB úložných zariadení na hostovi
