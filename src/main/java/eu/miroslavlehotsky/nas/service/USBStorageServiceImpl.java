@@ -12,13 +12,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
-
 import eu.miroslavlehotsky.nas.model.FileRecord;
 import net.samuelcampos.usbdrivedetector.USBStorageDevice;
 import net.samuelcampos.usbdrivedetector.detectors.AbstractStorageDeviceDetector;
@@ -37,8 +35,7 @@ public class USBStorageServiceImpl implements USBStorageService {
 			fileRecords = Files.walk(path, 1)//
 					.filter(v -> !v.equals(path))//
 					.map(FileRecord::new)//
-					.sorted(Comparator.comparing((FileRecord v) -> v.getType()).reversed()
-							.thenComparing((FileRecord v) -> v.getName().toLowerCase()))//
+					.sorted(Comparator.comparing((FileRecord v) -> v.getType()).reversed().thenComparing((FileRecord v) -> v.getName().toLowerCase()))//
 					.collect(Collectors.toCollection(ArrayList::new));
 		} catch (IOException e) {
 			e.printStackTrace();

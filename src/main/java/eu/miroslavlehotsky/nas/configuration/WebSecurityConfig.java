@@ -13,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import eu.miroslavlehotsky.nas.service.NASUserDetailsService;
 
 @Configuration
@@ -69,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		MethodInvokingFactoryBean methodInvokingFactoryBean = new MethodInvokingFactoryBean();
 		methodInvokingFactoryBean.setTargetClass(SecurityContextHolder.class);
 		methodInvokingFactoryBean.setTargetMethod("setStrategyName");
-		methodInvokingFactoryBean.setArguments(new String[] { SecurityContextHolder.MODE_INHERITABLETHREADLOCAL });
+		methodInvokingFactoryBean.setArguments(new String[] {SecurityContextHolder.MODE_INHERITABLETHREADLOCAL});
 		return methodInvokingFactoryBean;
 	}
 }

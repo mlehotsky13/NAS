@@ -2,7 +2,6 @@ package eu.miroslavlehotsky.nas.service;
 
 import java.util.Optional;
 import java.util.Set;
-
 import eu.miroslavlehotsky.nas.model.NASUser;
 import eu.miroslavlehotsky.nas.model.cst.RoleType;
 

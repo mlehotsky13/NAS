@@ -10,16 +10,13 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-
 import eu.miroslavlehotsky.nas.model.NASUser;
 import eu.miroslavlehotsky.nas.model.cst.RoleType;
 
@@ -27,7 +24,7 @@ import eu.miroslavlehotsky.nas.model.cst.RoleType;
 public class UserFileSystemServiceImpl implements UserFileSystemService {
 
 	private static final ObjectMapper om = new ObjectMapper();
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -55,8 +52,7 @@ public class UserFileSystemServiceImpl implements UserFileSystemService {
 	@Override
 	public void deleteUser(String username) {
 		try {
-			Set<NASUser> users = getAllUsers().stream().filter(user -> !username.equals(user.getUsername()))
-					.collect(Collectors.toSet());
+			Set<NASUser> users = getAllUsers().stream().filter(user -> !username.equals(user.getUsername())).collect(Collectors.toSet());
 			saveUsersJson(users);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
